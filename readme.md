@@ -1,5 +1,14 @@
 #ES6
 
+## Learning Objectives
+
+- Compare/contrast features of ES5 and ES6
+- Explain when to use var vs let vs const
+- Use default parameters and arrow functions
+- Use template literals to interpolate variables and strings
+- Compare ES6 classes w/ ES5 prototypes
+- Use import/export syntax with modules
+
 ## A Brief History of JavaScript
 
 The JavaScript standard is referred to as EcmaScript.
@@ -342,16 +351,134 @@ var bob = new Person()
 
 ## Classes
 
+Classes in ES6 are defined as syntactical sugar on top of the existing prototypal
+interface we've worked with:
+
+```js
+function Animal(name){
+  this.name = name 
+}
+Animal.prototype.speak = function(){
+  console.log("my name is " + this.name)
+}
+
+function Dog(name){
+  this.name = name
+}
+Dog.prototype = new Animal()
+
+var lassie = new Dog("lassie")
+lassie.speak()
+```
+
+and the es6 version:
+
+```js
+class Animal {
+  constructor(name) {
+    this.name = name;
+  }
+  speak() {
+    console.log(this.name + ' makes a noise.');
+  }
+}
+
+class Dog extends Animal {
+  speak() {
+    console.log(this.name + ' barks.');
+  }
+}
+
+var lassie = new Dog("lassie")
+```
+
+#### You do: Class exercises
+
+1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/12-classes.js
+1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/13-classes.js
+1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/14-classes.js
+
 ## Modules
 
-- import / export
+We have seen modules with `export` and `require` like so:
+
+```js
+// routes.js
+
+module.exports = {
+  index: function(){
+    console.log("index route")
+  }
+}
+
+// app.js
+
+var routes = require("./routes.js")
+routes.index()
+```
+
+ES6 introduces named imports and exports, which allow us to import functions and
+objects with a particular name:
+
+```js
+
+// routes.js
+
+export function index(){
+  console.log("index route")
+}
+export function show(){
+  console.log("show route")
+}
+
+// app.js
+
+import {index, show} from 'routes'
+index()
+show()
+
+// or...
+
+import * as routes from 'routes'
+routes.index()
+routes.show()
+```
+
+A quick cheat sheet:
+
+```js
+//Import an entire module's contents. This inserts myModule into the current scope, containing all the exported bindings from "my-module.js".
+import * as myModule from "my-module"
+
+// Import a single member of a module. This inserts myMember into the current scope.
+import {myMember} from "my-module"
+
+// Import multiple members of a module. This inserts both foo and bar into the current scope.
+import {foo, bar} from "my-module"
+
+//Import a member with a more convenient alias. This inserts shortName into the current scope.
+import {reallyReallyLongModuleMemberName as shortName} from "my-module"
+
+// Import multiple members of a module with convenient aliases.
+import {reallyReallyLongModuleMemberName as shortName, anotherLongModuleName as short} from "my-module"
+
+// Import an entire module for side effects only, without importing any bindings.
+import "my-module"
+```
 
 ## Legacy Browser Support
 
-- https://kangax.github.io/compat-table/es6/
-- Traceur
-- Babel
+Support for ES6 is great! - https://kangax.github.io/compat-table/es6/
+
+If you need to support a legacy browser, check out the following tools:
+- [Traceur](https://github.com/google/traceur-compiler/wiki/Getting-Started)
+- [Babel](https://babeljs.io/)
 
 ## Resources
 
 - [You Don't Know JS](https://github.com/getify/You-Dont-Know-JS/tree/master/es6%20%26%20beyond)
+- https://www.sitepoint.com/joys-block-scoping-es6/
+- https://coryrylan.com/blog/javascript-es6-class-syntax
+- http://www.2ality.com/2015/01/es6-destructuring.html
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_template_literals
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
