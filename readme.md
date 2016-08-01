@@ -8,6 +8,7 @@
 - Use template literals to interpolate variables and strings
 - Compare ES6 classes w/ ES5 prototypes
 - Use import/export syntax with modules
+- Use deconstruction to extract values from objects and arrays
 
 ## A Brief History of JavaScript
 
@@ -39,6 +40,7 @@ The primary way to control scope in an application has been through the use
 of functions:
 
 ```js
+// es5
 var a = 1
 (function(){
   var a = 2
@@ -51,6 +53,7 @@ ES6 introduces the concept of block scoping, which allows us to limit the scope
 of a variable declared with `let` to a given block `{ ... }`
 
 ```js
+// es6
 var a = 1
 {
   let a = 2
@@ -62,6 +65,7 @@ console.log(a)
 You're more likely to see `let` declarations inside an `if` or `for` block:
 
 ```js
+//es5
 for(var i = 0; i < 10; i++){
   console.log(i)
 }
@@ -69,6 +73,7 @@ console.log("outside loop:", i)
 
 // versus
 
+//es6
 for(let i = 0; i < 10; i++){
   console.log(i)
 }
@@ -158,8 +163,8 @@ function hello( name = "stranger"){
   console.log("Hello, " + name)
 }
 
-hello()
-hello("Jesse")
+hello() // Hello, stranger
+hello("Jesse") // Hello, Jesse
 ```
 
 #### You do: Default Parameters Practice
@@ -174,8 +179,13 @@ types (arrays and objects) into distinct variables:
 
 ```js
 let [a,b] = [1,2]
+a //= 1
+b //= 2
 let nums = [1,2,3,4,5]
 let [first, second, ...thirdfourthfifth] = nums
+first //= 1
+second //= 2
+thirdfourthfifth //= [3,4,5]
 ```
 
 This also applies to objects:
@@ -184,13 +194,13 @@ This also applies to objects:
 var user = {
    id: 1,
    name: "Bob",
-    age: 43 ,
+   age: 43 ,
    profile_url:  "http://api.co/users/1"
 }
 
 // ES5
 function getUserInfo (user) {
-     return $.getJSON(user.profile_url)
+  return $.getJSON(user.profile_url)
 }
 
 // In ES6 becomes
@@ -298,7 +308,7 @@ console.log(`Hello. My name is ${name}. You killed my ${killee}. Prepare to ${pr
 1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/09-templates.js
 1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/10-templates.js
 
-### arrow functions
+### Arrow Functions
 
 Arrow functions are a new shorthand syntax for defining anonymous functions:
 
@@ -345,6 +355,28 @@ function Person(){
 var bob = new Person()
 ```
 
+Additionally, the `return` statement is not needed with single line arrow functions:
+
+```js
+let add = (x, y) => x + y
+```
+
+If the function is multi-line, you need to explicitly return:
+
+```js
+let add = (x,y) => {
+  return x + y
+}
+```
+
+Though the single line return can be faked by wrapping the expression in parentheses:
+
+```js
+let add = (x,y) => (
+  x + y
+)
+```
+
 #### You do: Arrow functions
 
 1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/11-arrow-functions.js
@@ -356,7 +388,7 @@ interface we've worked with:
 
 ```js
 function Animal(name){
-  this.name = name 
+  this.name = name
 }
 Animal.prototype.speak = function(){
   console.log("my name is " + this.name)
@@ -466,6 +498,21 @@ import {reallyReallyLongModuleMemberName as shortName, anotherLongModuleName as 
 import "my-module"
 ```
 
+Additionally, you can specify default expressions or functions to mimic the previous
+`module.exports` behavior
+
+```js
+// lib.js
+
+export default function(){
+
+}
+
+// app.js
+import myNewFunction from 'lib'
+myNewFunction()
+```
+
 ## Legacy Browser Support
 
 Support for ES6 is great! - https://kangax.github.io/compat-table/es6/
@@ -473,6 +520,16 @@ Support for ES6 is great! - https://kangax.github.io/compat-table/es6/
 If you need to support a legacy browser, check out the following tools:
 - [Traceur](https://github.com/google/traceur-compiler/wiki/Getting-Started)
 - [Babel](https://babeljs.io/)
+
+## Keep Going
+
+There are lots more features of ES6 that we have not covered:
+
+- [Symbols](http://es6-features.org/#SymbolType)
+- [Iterator & for..of operator](http://es6-features.org/#IteratorForOfOperator)
+- [Generators](https://davidwalsh.name/es6-generators)
+- [Proxies](https://ponyfoo.com/articles/es6-proxies-in-depth)
+- [Reflection and meta-programming](http://www.2ality.com/2011/01/reflection-and-meta-programming-in.html)
 
 ## Resources
 
