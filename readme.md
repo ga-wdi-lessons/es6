@@ -513,6 +513,10 @@ import myNewFunction from 'lib'
 myNewFunction()
 ```
 
+### You do: Modules practice
+
+1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/15-modules.js
+
 ## Legacy Browser Support
 
 Support for ES6 is great! - https://kangax.github.io/compat-table/es6/
