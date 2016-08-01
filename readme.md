@@ -525,6 +525,12 @@ If you need to support a legacy browser, check out the following tools:
 - [Traceur](https://github.com/google/traceur-compiler/wiki/Getting-Started)
 - [Babel](https://babeljs.io/)
 
+## You do: wamazon
+
+https://github.com/ga-wdi-exercises/wamazon
+
+- Use es6 classes and template literals
+
 ## Keep Going
 
 There are lots more features of ES6 that we have not covered:
