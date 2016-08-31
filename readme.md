@@ -27,7 +27,7 @@ In 2009, ES5 was finalized and it's what we've been writing in class.
 Many plugins, frameworks and modules still use ES5, as browser support for
 the new version of the language is still limited [ahem... ie.](http://caniuse.com/#search=es6)
 
-Later today and tomorrow, we'll be working with a framework called React, and many
+Later today and next week, we'll be working with a framework called React, and many
 React tutorials (and our lesson plans) have adopted the new syntax and features
 of ES6. Today is all about exploring those features and getting comfortable with
 the new syntax.
@@ -41,12 +41,12 @@ of functions:
 
 ```js
 // es5
-var a = 1
+var a = 1;
 (function(){
   var a = 2
-  console.log(a)
-})()
-console.log(a)
+  console.log(a);
+})();
+console.log(a);
 ```
 
 ES6 introduces the concept of block scoping, which allows us to limit the scope
@@ -54,12 +54,12 @@ of a variable declared with `let` to a given block `{ ... }`
 
 ```js
 // es6
-var a = 1
+var a = 1;
 {
-  let a = 2
-  console.log(a)
+  let a = 2;
+  console.log(a);
 }
-console.log(a)
+console.log(a);
 ```
 
 You're more likely to see `let` declarations inside an `if` or `for` block:
@@ -74,10 +74,10 @@ console.log("outside loop:", i)
 // versus
 
 //es6
-for(let i = 0; i < 10; i++){
-  console.log(i)
+for(let j = 0; j < 10; j++){
+  console.log(j)
 }
-console.log("outside loop:", i)
+console.log("outside loop:", j)
 ```
 
 ES6 introduces another keyword for declaring variables: `const`
@@ -85,12 +85,12 @@ ES6 introduces another keyword for declaring variables: `const`
 `const` is an identifier for variables that won't be reassigned:
 
 ```js
-const a = 1
-a = 2
+const a = 1;
+a = 2;
 // Throws an error in chrome
-const a = 2
+const a = 2;
 // throws an error
-var a = 2
+var a = 2;
 // throws an error
 ```
 
@@ -106,11 +106,11 @@ The spread operator `...` allows an expression to be expanded into multiple elem
 This is useful for separating an array into individual elements:
 
 ```js
-var dimensions = [10, 5, 2]
+var dimensions = [10, 5, 2];
 var volume = function(height, width, length){
-  return height * width * height
+  return height * width * length;
 }
-volume(...dimensions)
+volume(...dimensions);
 
 // versus
 
@@ -208,6 +208,8 @@ function getUserInfo (user) {
 function getUserInfo ({ profile_url })  {
   return $.getJSON(profile_url)
 }
+
+//You would call both by using: getUserInfo(user)
 ```
 
 #### You do: (De)Constructing Practice
@@ -236,7 +238,7 @@ let car = {
 }
 ```
 
-And for properties where the key is the same as the value:
+And for properties where the key is the same as the variable storing the value:
 
 ```js
 let x = 1
@@ -303,10 +305,9 @@ console.log(`Hello. My name is ${name}. You killed my ${killee}. Prepare to ${pr
 
 ```
 
-#### You do: Template Exercises
+#### You do: Template Exercise
 
 1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/09-templates.js
-1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/10-templates.js
 
 ### Arrow Functions
 
@@ -337,7 +338,7 @@ Arrow functions also have the benefit of not changing the value of `this`:
 function Person(){
   this.age = 0
   setInterval(function(){
-    this.age++ // doesnt work because this is GLOBAL
+    this.age++ // doesnt work because this is GLOBAL. The setInterval function belongs to the window object.
   }, 1000)
 }
 
@@ -355,7 +356,7 @@ function Person(){
 var bob = new Person()
 ```
 
-Additionally, the `return` statement is not needed with single line arrow functions:
+Additionally, the `return` statement is not needed with single line arrow functions. There is an implicit return.
 
 ```js
 let add = (x, y) => x + y
@@ -427,8 +428,6 @@ var lassie = new Dog("lassie")
 #### You do: Class exercises
 
 1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/12-classes.js
-1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/13-classes.js
-1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/14-classes.js
 
 ## Modules
 
