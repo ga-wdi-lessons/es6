@@ -9,7 +9,7 @@
 - Use deconstruction to extract values from objects and arrays
 - Use default parameters and arrow functions
 
-## Framing
+## Framing (15 / 15)
 
 Today, we are going to be looking at a new way to write Javascript by playing with some of the new features released in ES6.
 
@@ -48,7 +48,7 @@ the new syntax.
 
 ## New Features
 
-### Block Scope
+### Block Scope (10 / 25)
 
 <details>
 <summary>What does the concept of scope refer to in JS?</summary>
@@ -127,14 +127,14 @@ var a = 2;
 // throws an error
 ```
 
-### You do: Block Scope Exercises
+### You do: Block Scope Exercises (5 / 30)
 
 1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/01-var-let-const.js
 2. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/02-const-complex.js
 
-### Default parameters
+### Default parameters (5 / 35)
 
-Remember default parameters from Ruby, now we can do something similar in JavaScript!
+With ES6, we now have the option add set a default value for any of our functions' parameters.
 
 ```js
 function hello( name = "stranger"){
@@ -145,14 +145,12 @@ hello() // Hello, stranger
 hello("Jesse") // Hello, Jesse
 ```
 
-#### You do: Default Parameters Practice
+#### You do: Default Parameters Practice (5 / 40)
 
 1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/04-default-parameters.js
 2. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/05-default-parameters.js
 
-### Destructuring
-
-<!-- TODO: update examples  -->
+### Destructuring (10 / 50)
 
 Destructuring assignment makes it possible to extract data from complex data
 types (arrays and objects) into distinct variables:
@@ -162,10 +160,10 @@ let [a,b] = [1,2]
 a //= 1
 b //= 2
 let nums = [1,2,3,4,5]
-let [first, second, ...thirdfourthfifth] = nums
+let [first, second, third] = nums
 first //= 1
 second //= 2
-thirdfourthfifth //= [3,4,5]
+third //= 3
 ```
 
 This also applies to objects:
@@ -175,28 +173,32 @@ var user = {
    id: 1,
    name: "Bob",
    age: 43 ,
-   profile_url:  "http://api.co/users/1"
+   profile_url:  "http://api.co/users/1",
+   location: "DC",
 }
 
 // ES5
-function getUserInfo (user) {
-  return $.getJSON(user.profile_url)
+function greetUser (user) {
+  console.log("Hello " + user.name + ", how's the weather in " + user.location)
 }
 
 // In ES6 becomes
 
-function getUserInfo ({ profile_url })  {
-  return $.getJSON(profile_url)
+function greetUser ({ name, location })  {
+  console.log("Hello " + name + ", how's the weather in " + location)
 }
 
-//You would call both by using: getUserInfo(user)
+//You would call both by using: greetUser(user)
 ```
 
-#### You do: Destructuring Practice
+#### You do: Destructuring Practice (10 / 60)
 
 1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/06-deconstruction.js
 
-### Concise Object Properties and Methods
+
+## Break (10 / 70)
+
+### Concise Object Properties and Methods (5 / 75)
 
 ES6 allows us to shorten method definitions from:
 
@@ -221,20 +223,22 @@ let car = {
 And for properties where the key is the same as the variable storing the value:
 
 ```js
+// es5
 let x = 1
 let y = 2
 let obj = {x:x, y:y}
 
 // vs
+//es6
 
 let obj = {x,y}
 ```
 
-#### You do: Concise methods and properties practice
+#### You do: Concise methods and properties practice (5 / 80)
 
 1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/07-concise-properties-and-methods.js
 
-### Template Literals
+### Template Literals (5 / 85)
 
 Remember string interpolation from ruby? We've been able to semi-accomplish this
 with string concatenation in javascript:
@@ -258,11 +262,11 @@ console.log(`Hello. My name is ${name}. You killed my ${killee}. Prepare to ${pr
 
 ```
 
-#### You do: Template Exercise
+#### You do: Template Exercise (5 / 90)
 
 1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/09-templates.js
 
-### Arrow Functions
+### Arrow Functions (15 / 105)
 
 Arrow functions are a new shorthand syntax for defining anonymous functions:
 
@@ -288,25 +292,27 @@ foods.forEach( (food,i) => console.log(`My #${i} favorite food is ${food}`) )
 Arrow functions also have the benefit of not changing the value of `this`:
 
 ```js
-function Person(){
-  this.age = 0
-  setInterval(function(){
-    this.age++ // doesnt work because this is GLOBAL. The setInterval function belongs to the window object.
-  }, 1000)
+var pizza = {
+  temperature: 0,
+  toppings: ["cheese", "ham", "pineapple"],
+  bake() {
+    setInterval(function(){
+      this.temperature++ // doesnt work because this is GLOBAL. The setInterval function belongs to the window object.
+    }, 1000)
+  }
 }
-
-var bob = new Person()
 
 // vs ES6
 
-function Person(){
-  this.age = 0
-  setInterval(() => {
-    this.age++
-  }, 1000)
+var pizza = {
+  temperature: 0,
+  toppings: ["cheese", "ham", "pineapple"],
+  bake() {
+    setInterval( () => {
+      this.temperature++
+    }, 1000)
+  }
 }
-
-var bob = new Person()
 ```
 
 Additionally, the `return` statement is not needed with single line arrow functions. There is an implicit return.
@@ -331,12 +337,12 @@ let add = (x,y) => (
 )
 ```
 
-#### You do: Arrow functions
+#### You do: Arrow functions (10 / 115)
 
 1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/11-arrow-functions.js
 
 
-## Legacy Browser Support
+## Legacy Browser Support (5 / 120)
 
 Support for ES6 is great! - https://kangax.github.io/compat-table/es6/
 
