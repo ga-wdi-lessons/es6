@@ -2,41 +2,73 @@
 
 ## Learning Objectives
 
+- Explain the history of ES and JS
 - Compare/contrast features of ES5 and ES6
-- Explain when to use var vs let vs const
-- Use default parameters and arrow functions
+- Explain when to use `var` vs `let` vs `const`
 - Use template literals to interpolate variables and strings
-- Compare ES6 classes w/ ES5 prototypes
-- Use import/export syntax with modules
 - Use deconstruction to extract values from objects and arrays
+- Use default parameters and arrow functions
 
-## A Brief History of JavaScript
+## Framing
 
-The JavaScript standard is referred to as EcmaScript.
+Today, we are going to be looking at a new way to write Javascript by playing with some of the new features released in ES6.
 
-I like to think of EcmaScript as the language, and JavaScript an implementation of that language.
+#### JS vs ES
 
-ES3 was the first widespread use of the language. Unfortunately, ES4 never came out.
+The JavaScript standard is officially referred to as [ECMAScript](https://en.wikipedia.org/wiki/ECMAScript).
 
-In 2009, ES5 was finalized and it's what we've been writing in class.
+As JS is so widely used that any changes would affect the whole web, there is a body known as TC39 or Ecma International, which formally approves official versions for release.
 
-2015 brought ES6, published as a standard on June 17th, 2015.
+Each version contains features / changes to be added to the language.
 
-### Why now?
+In short, I like to think of ECMAScript as the language, and JavaScript an implementation of that language.
+
+#### Evolution of JS
+
+> Check out [this awesome visualization](http://shaunlebron.github.io/solar-system-of-js/#0) of the current state of the JS universe
+
+Condensed timeline:
+
+- 1999 - ES3 released, the first widespread use of the language.
+- ES4 never released, largely due to  political reasons
+- 2009 - ES5 released, what we've been writing so far in class.
+- 2015 - ES6 published releasing a wide set of new features and syntax
+
+#### Why now?
 
 Many plugins, frameworks and modules still use ES5, as browser support for
-the new version of the language is still limited [ahem... ie.](http://caniuse.com/#search=es6)
+the new version of the language is [still not universal](http://caniuse.com/#search=es6), but the new syntax and features
+of ES6 are increasingly becoming more and more popular among many open-source projects and in the developer world at large. Also,
+you are very likely to see it pop up in the documentation of some of the technologies we will be using in this course.
 
-Later today and next week, we'll be working with a framework called React, and many
-React tutorials (and our lesson plans) have adopted the new syntax and features
-of ES6. Today is all about exploring those features and getting comfortable with
+Today is all about exploring some of the [new features](https://github.com/lukehoban/es6features) and getting comfortable with
 the new syntax.
 
-## Syntax
+> For more backstory, we recommend checking out [this talk](https://www.youtube.com/watch?v=PlmsweSNhTw) from Brendan Eich on what he views as the future of JS.
+
+## New Features
 
 ### Block Scope
 
-The primary way to control scope in an application has been through the use
+<details>
+<summary>What does the concept of scope refer to in JS?</summary>
+
+In short, the notion of which variables are available where.
+
+</details>
+
+---
+
+<details>
+<summary>So far in class, what is the primary way to control scope in JS?</summary>
+
+Through the use of functions to create new local scopes.
+
+</details>
+
+#### `let`
+
+So far, the primary way to control scope in an application has been through the use
 of functions:
 
 ```js
@@ -79,6 +111,7 @@ for(let j = 0; j < 10; j++){
 }
 console.log("outside loop:", j)
 ```
+#### `const`
 
 ES6 introduces another keyword for declaring variables: `const`
 
@@ -97,62 +130,7 @@ var a = 2;
 ### You do: Block Scope Exercises
 
 1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/01-var-let-const.js
-1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/02-const-complex.js
-
-### Spread operator
-
-The spread operator `...` allows an expression to be expanded into multiple elements.
-
-This is useful for separating an array into individual elements:
-
-```js
-var dimensions = [10, 5, 2];
-var volume = function(height, width, length){
-  return height * width * length;
-}
-volume(...dimensions);
-
-// versus
-
-volume(dimensions[0], dimensions[1], dimensions[2])
-```
-
-This also makes it very easy to create copies of an array in functions where
-mutation occurs:
-
-```js
-var days = ["monday","tuesday","wednesday","thursday","friday","saturday","sunday"]
-function reversedDays(arr){
-  return arr.reverse()
-}
-console.log(reversedDays(days))
-// but now days is no longer in order
-console.log(days)
-
-// To deal with this, we can either:
-
-function reversedDays(arr){
-  var newArray = []
-  for(let i = 0; i < arr.length; i++){
-    newArray.push(arr[i])
-  }
-  return newArray.reverse()
-}
-console.log(reversedDays(days))
-console.log(days)
-
-// or... (<- pun)
-
-function reversedDays(arr){
-  return [...arr].reverse()
-}
-console.log(reversedDays(days))
-console.log(days)
-```
-
-#### You do: Spread Practice
-
-1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/03-spread-practice.js
+2. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/02-const-complex.js
 
 ### Default parameters
 
@@ -170,9 +148,11 @@ hello("Jesse") // Hello, Jesse
 #### You do: Default Parameters Practice
 
 1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/04-default-parameters.js
-1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/05-default-parameters.js
+2. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/05-default-parameters.js
 
 ### Destructuring
+
+<!-- TODO: update examples  -->
 
 Destructuring assignment makes it possible to extract data from complex data
 types (arrays and objects) into distinct variables:
@@ -212,11 +192,11 @@ function getUserInfo ({ profile_url })  {
 //You would call both by using: getUserInfo(user)
 ```
 
-#### You do: (De)Constructing Practice
+#### You do: Destructuring Practice
 
 1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/06-deconstruction.js
 
-### Concise properties and methods
+### Concise Object Properties and Methods
 
 ES6 allows us to shorten method definitions from:
 
@@ -254,34 +234,7 @@ let obj = {x,y}
 
 1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/07-concise-properties-and-methods.js
 
-### getters and setters
-
-Getters and setters in ES6 are very similar to getters and setters in Ruby classes,
-but allow us to define pseudo-properties on objects.
-
-Consider the following example:
-
-```js
-let person = {
-  firstName: "Jesse",
-  lastName: "Shawl",
-  get fullName(){
-    return this.firstName + " " + this.lastName
-  },
-  set fullName(fn){
-    var names = fn.split(" ")
-    this.firstName = names[0]
-    this.lastName = names[1]
-  }
-}
-person.fullName = "j dog" // notice no parentheses
-```
-
-#### You do: Getters and Setters
-
-1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/08-getters-setters.js
-
-### template literals
+### Template Literals
 
 Remember string interpolation from ruby? We've been able to semi-accomplish this
 with string concatenation in javascript:
@@ -382,139 +335,6 @@ let add = (x,y) => (
 
 1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/11-arrow-functions.js
 
-## Classes
-
-Classes in ES6 are defined as syntactical sugar on top of the existing prototypal
-interface we've worked with:
-
-```js
-function Animal(name){
-  this.name = name
-}
-Animal.prototype.speak = function(){
-  console.log("my name is " + this.name)
-}
-
-function Dog(name){
-  this.name = name
-}
-Dog.prototype = new Animal()
-
-var lassie = new Dog("lassie")
-lassie.speak()
-```
-
-and the es6 version:
-
-```js
-class Animal {
-  constructor(name) {
-    this.name = name;
-  }
-  speak() {
-    console.log(this.name + ' makes a noise.');
-  }
-}
-
-class Dog extends Animal {
-  speak() {
-    console.log(this.name + ' barks.');
-  }
-}
-
-var lassie = new Dog("lassie")
-```
-
-#### You do: Class exercises
-
-1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/12-classes.js
-
-## Modules
-
-We have seen modules with `export` and `require` like so:
-
-```js
-// routes.js
-
-module.exports = {
-  index: function(){
-    console.log("index route")
-  }
-}
-
-// app.js
-
-var routes = require("./routes.js")
-routes.index()
-```
-
-ES6 introduces named imports and exports, which allow us to import functions and
-objects with a particular name:
-
-```js
-
-// routes.js
-
-export function index(){
-  console.log("index route")
-}
-export function show(){
-  console.log("show route")
-}
-
-// app.js
-
-import {index, show} from 'routes'
-index()
-show()
-
-// or...
-
-import * as routes from 'routes'
-routes.index()
-routes.show()
-```
-
-A quick cheat sheet:
-
-```js
-//Import an entire module's contents. This inserts myModule into the current scope, containing all the exported bindings from "my-module.js".
-import * as myModule from "my-module"
-
-// Import a single member of a module. This inserts myMember into the current scope.
-import {myMember} from "my-module"
-
-// Import multiple members of a module. This inserts both foo and bar into the current scope.
-import {foo, bar} from "my-module"
-
-//Import a member with a more convenient alias. This inserts shortName into the current scope.
-import {reallyReallyLongModuleMemberName as shortName} from "my-module"
-
-// Import multiple members of a module with convenient aliases.
-import {reallyReallyLongModuleMemberName as shortName, anotherLongModuleName as short} from "my-module"
-
-// Import an entire module for side effects only, without importing any bindings.
-import "my-module"
-```
-
-Additionally, you can specify default expressions or functions to mimic the previous
-`module.exports` behavior
-
-```js
-// lib.js
-
-export default function(){
-
-}
-
-// app.js
-import myNewFunction from 'lib'
-myNewFunction()
-```
-
-### You do: Modules practice
-
-1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/15-modules.js
 
 ## Legacy Browser Support
 
@@ -524,11 +344,62 @@ If you need to support a legacy browser, check out the following tools:
 - [Traceur](https://github.com/google/traceur-compiler/wiki/Getting-Started)
 - [Babel](https://babeljs.io/)
 
-## You do: wamazon
+## Bonus
 
-https://github.com/ga-wdi-exercises/wamazon
+### Spread operator
 
-- Use es6 classes and template literals
+The spread operator `...` allows an expression to be expanded into multiple elements.
+
+This is useful for separating an array into individual elements:
+
+```js
+var dimensions = [10, 5, 2];
+var volume = function(height, width, length){
+  return height * width * length;
+}
+volume(...dimensions);
+
+// versus
+
+volume(dimensions[0], dimensions[1], dimensions[2])
+```
+
+This also makes it very easy to create copies of an array in functions where
+mutation occurs:
+
+```js
+var days = ["monday","tuesday","wednesday","thursday","friday","saturday","sunday"]
+function reversedDays(arr){
+  return arr.reverse()
+}
+console.log(reversedDays(days))
+// but now days is no longer in order
+console.log(days)
+
+// To deal with this, we can either:
+
+function reversedDays(arr){
+  var newArray = []
+  for(let i = 0; i < arr.length; i++){
+    newArray.push(arr[i])
+  }
+  return newArray.reverse()
+}
+console.log(reversedDays(days))
+console.log(days)
+
+// or... (<- pun)
+
+function reversedDays(arr){
+  return [...arr].reverse()
+}
+console.log(reversedDays(days))
+console.log(days)
+```
+
+#### You do: Spread Practice
+
+1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/03-spread-practice.js
 
 ## Keep Going
 
@@ -542,9 +413,7 @@ There are lots more features of ES6 that we have not covered:
 
 ## Resources
 
-- [You Don't Know JS](https://github.com/getify/You-Dont-Know-JS/tree/master/es6%20%26%20beyond)
-- https://www.sitepoint.com/joys-block-scoping-es6/
-- https://coryrylan.com/blog/javascript-es6-class-syntax
-- http://www.2ality.com/2015/01/es6-destructuring.html
-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_template_literals
-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes
+- [You Don't Know ES6](https://github.com/getify/You-Dont-Know-JS/tree/master/es6%20%26%20beyond)
+- [Block Scope](https://www.sitepoint.com/joys-block-scoping-es6/)
+- [Destructuring](http://www.2ality.com/2015/01/es6-destructuring.html)
+- [Template Literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_template_literals)
