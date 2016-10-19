@@ -314,12 +314,24 @@ var pizza = {
     }, 1000)
   }
 }
+
+pizza.bake();
+pizza.temperature //will display the return value of setInterval, which is the ID value of the timer that was set
 ```
 
 Additionally, the `return` statement is not needed with single line arrow functions. There is an implicit return.
 
 ```js
 let add = (x, y) => x + y
+add(2, 3) //5
+```
+
+```js
+//ES5
+function subtract(x,y){
+  x+y
+}
+//undefined in console
 ```
 
 If the function is multi-line, you need to explicitly return:
@@ -328,6 +340,8 @@ If the function is multi-line, you need to explicitly return:
 let add = (x,y) => {
   return x + y
 }
+add(2,3)
+//undefined in console
 ```
 
 Though the single line return can be faked by wrapping the expression in parentheses:
