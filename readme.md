@@ -110,6 +110,7 @@ for(let j = 0; j < 10; j++){
   console.log(j)
 }
 console.log("outside loop:", j)
+//throws an error
 ```
 #### `const`
 
@@ -127,12 +128,12 @@ var a = 2;
 // throws an error
 ```
 
-### You do: Block Scope Exercises (5 / 30)
+### You do: Block Scope Exercises (10 / 35)
 
 1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/01-var-let-const.js
 2. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/02-const-complex.js
 
-### Default parameters (5 / 35)
+### Default parameters (5 / 40)
 
 With ES6, we now have the option add set a default value for any of our functions' parameters.
 
@@ -145,12 +146,12 @@ hello() // Hello, stranger
 hello("Jesse") // Hello, Jesse
 ```
 
-#### You do: Default Parameters Practice (5 / 40)
+#### You do: Default Parameters Practice (10 / 50)
 
 1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/04-default-parameters.js
 2. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/05-default-parameters.js
 
-### Destructuring (10 / 50)
+### Destructuring (10 / 60)
 
 Destructuring assignment makes it possible to extract data from complex data
 types (arrays and objects) into distinct variables:
@@ -174,7 +175,7 @@ var user = {
    name: "Bob",
    age: 43 ,
    profile_url:  "http://api.co/users/1",
-   location: "DC",
+   location: "DC"
 }
 
 // ES5
@@ -191,14 +192,14 @@ function greetUser ({ name, location })  {
 //You would call both by using: greetUser(user)
 ```
 
-#### You do: Destructuring Practice (10 / 60)
+#### You do: Destructuring Practice (15 / 75)
 
 1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/06-deconstruction.js
 
 
-## Break (10 / 70)
+## Break (15 / 90)
 
-### Concise Object Properties and Methods (5 / 75)
+### Concise Object Properties and Methods (5 / 95)
 
 ES6 allows us to shorten method definitions from:
 
@@ -230,18 +231,18 @@ let obj = {x:x, y:y}
 
 // vs
 //es6
-
+let x = 1
+let y = 2
 let obj = {x,y}
 ```
 
-#### You do: Concise methods and properties practice (5 / 80)
+#### You do: Concise methods and properties practice (10 / 105)
 
 1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/07-concise-properties-and-methods.js
 
-### Template Literals (5 / 85)
+### Template Literals (5 / 110)
 
-Remember string interpolation from ruby? We've been able to semi-accomplish this
-with string concatenation in javascript:
+Here's how we previously used variables as placeholders to evaluate strings.
 
 ```js
 var name = "Inigo Montoya"
@@ -251,7 +252,7 @@ var prepareTo = "die"
 console.log("Hello. My name is "+ name + ". You killed my " + killee +". Prepare to " + prepareTo)
 ```
 
-In ES6, we can interpolate variables using template literal syntax: `\``
+In ES6, we can interpolate variables using template literal syntax: `\`` (backticks)
 
 ```js
 let name = "Inigo Montoya"
@@ -262,11 +263,11 @@ console.log(`Hello. My name is ${name}. You killed my ${killee}. Prepare to ${pr
 
 ```
 
-#### You do: Template Exercise (5 / 90)
+#### You do: Template Exercise (10 / 120)
 
 1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/09-templates.js
 
-### Arrow Functions (15 / 105)
+### Arrow Functions (15 / 135)
 
 Arrow functions are a new shorthand syntax for defining anonymous functions:
 
@@ -337,12 +338,12 @@ let add = (x,y) => (
 )
 ```
 
-#### You do: Arrow functions (10 / 115)
+#### You do: Arrow functions (15 / 150)
 
 1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/11-arrow-functions.js
 
 
-## Legacy Browser Support (5 / 120)
+## Legacy Browser Support (5 / 155)
 
 Support for ES6 is great! - https://kangax.github.io/compat-table/es6/
 
@@ -423,3 +424,10 @@ There are lots more features of ES6 that we have not covered:
 - [Block Scope](https://www.sitepoint.com/joys-block-scoping-es6/)
 - [Destructuring](http://www.2ality.com/2015/01/es6-destructuring.html)
 - [Template Literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_template_literals)
+
+## Additional Practice
+Update the following exercises to include ES6 features.
+
+- [ATM](https://github.com/ga-wdi-exercises/atm)
+- [Cash Register](https://github.com/ga-wdi-exercises/cash-register)
+- [Choose Your Own Adventure](https://github.com/ga-wdi-exercises/choose_your_own_adventure_js)
