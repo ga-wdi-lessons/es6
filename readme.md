@@ -343,7 +343,7 @@ let add = (x,y) => (
 1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/11-arrow-functions.js
 
 
-## Legacy Browser Support (5 / 155)
+## Legacy Browser Support
 
 Support for ES6 is great! - https://kangax.github.io/compat-table/es6/
 
