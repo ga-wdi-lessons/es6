@@ -1,4 +1,4 @@
-#ES6
+# ES6
 
 ## Learning Objectives
 
@@ -13,7 +13,7 @@
 
 Today, we are going to be looking at a new way to write Javascript by playing with some of the new features released in ES6.
 
-#### JS vs ES
+### JS vs ES
 
 The JavaScript standard is officially referred to as [ECMAScript](https://en.wikipedia.org/wiki/ECMAScript).
 
@@ -23,7 +23,7 @@ Each version contains features / changes to be added to the language.
 
 In short, I like to think of ECMAScript as the language, and JavaScript an implementation of that language.
 
-#### Evolution of JS
+### Evolution of JS
 
 > Check out [this awesome visualization](http://shaunlebron.github.io/solar-system-of-js/#0) of the current state of the JS universe
 
@@ -60,16 +60,25 @@ In short, the notion of which variables are available where.
 ---
 
 <details>
-<summary>So far in class, what is the primary way to control scope in JS?</summary>
+<summary>So far in class, what is the primary way to control scope in JS? Why do we want to control scope?</summary>
 
-Through the use of functions to create new local scopes.
+Functions create new local scopes.
+
+Scope allows us to use generic variable names (eg `count`, `input`, `evt`) while considering them in an isolated space.
+This makes our code easier to reason about.
 
 </details>
 
 #### `let`
 
-So far, the primary way to control scope in an application has been through the use
-of functions:
+The fact that other blocks (`if`, `for`, `while`, etc) *do not* create scopes is one of the oddities for which JS does and should get knocked.
+
+ES6 introduces the `let` keyword which works just like `var` but is scoped to its block (`{...}`) rather than its function.
+
+> Objects use curly braces `{}` but are not code blocks!
+
+Below are contrived examples of isolating a variable `a` to a local scope.
+Pre-es6 we need to use a verbose IIFE (immediately invoked function expression) to create an isolate scope.
 
 ```js
 // es5
@@ -81,8 +90,6 @@ var a = 1;
 console.log(a);
 ```
 
-ES6 introduces the concept of block scoping, which allows us to limit the scope
-of a variable declared with `let` to a given block `{ ... }`
 
 ```js
 // es6
@@ -116,7 +123,7 @@ console.log("outside loop:", j)
 
 ES6 introduces another keyword for declaring variables: `const`
 
-`const` is an identifier for variables that won't be reassigned:
+`const` declares a variable that won't be reassigned or redeclared:
 
 ```js
 const a = 1;
@@ -135,7 +142,25 @@ var a = 2;
 
 ### Default parameters (5 / 40)
 
-With ES6, we now have the option add set a default value for any of our functions' parameters.
+If a function defined to take 3 parameters is called with two arguments, what is the value of the third parameter in the function body?
+
+For example:
+
+```js
+function printAndSum(a, b, c){
+console.log(a)
+console.log(b)
+console.log(c)
+
+return a + b + c
+}
+
+printAndSum(1, 2)
+
+// => ???
+```
+
+With ES6, we now have the option to set a default value for any of our functions' parameters.
 
 ```js
 function hello( name = "stranger"){
@@ -143,8 +168,10 @@ function hello( name = "stranger"){
 }
 
 hello() // Hello, stranger
-hello("Jesse") // Hello, Jesse
+hello('Juan') // Hello, Juan
 ```
+
+How can we make our `printAndSum` example more durable?
 
 #### You do: Default Parameters Practice (10 / 50)
 
@@ -153,23 +180,28 @@ hello("Jesse") // Hello, Jesse
 
 ### Destructuring (10 / 60)
 
-Destructuring assignment makes it possible to extract data from complex data
-types (arrays and objects) into distinct variables:
+Destructuring assignment makes it possible to extract data from collections (arrays and objects) into distinct variables:
 
 ```js
+// destructuring arrays
 let [a,b] = [1,2]
-a //= 1
-b //= 2
+a 
+//=> 1
+b 
+//=> 2
 let nums = [1,2,3,4,5]
 let [first, second, third] = nums
-first //= 1
-second //= 2
-third //= 3
+first 
+//=> 1
+second 
+//=> 2
+third 
+//=> 3
 ```
 
-This also applies to objects:
 
 ```js
+// destructuring objects
 var user = {
    id: 1,
    name: "Bob",
@@ -197,9 +229,9 @@ function greetUser ({ name, location })  {
 1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/06-deconstruction.js
 
 
-## Break (15 / 90)
+## Break (10 / 90)
 
-### Concise Object Properties and Methods (5 / 95)
+### Concise Object Literal Definitions (Properties and Methods) (5 / 95)
 
 ES6 allows us to shorten method definitions from:
 
@@ -221,12 +253,13 @@ let car = {
 }
 ```
 
-And for properties where the key is the same as the variable storing the value:
+It is very common that we will set a property to the value of a variable by the same name.
+ES6 lets us avoid this redundance.
 
 ```js
 // es5
-let x = 1
-let y = 2
+var x = 1
+var y = 2
 let obj = {x:x, y:y}
 
 // vs
@@ -236,13 +269,15 @@ let y = 2
 let obj = {x,y}
 ```
 
+NOTE: this is not `let` giving us this ability. `vars` and `conts` can be used to set object properties the same way in es6
+
 #### You do: Concise methods and properties practice (10 / 105)
 
 1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/07-concise-properties-and-methods.js
 
 ### Template Literals (5 / 110)
 
-Here's how we previously used variables as placeholders to evaluate strings.
+Here's how we previously used variables as to build custom strings.
 
 ```js
 var name = "Inigo Montoya"
@@ -252,7 +287,11 @@ var prepareTo = "die"
 console.log("Hello. My name is "+ name + ". You killed my " + killee +". Prepare to " + prepareTo)
 ```
 
-In ES6, we can interpolate variables using template literal syntax: `\`` (backticks)
+ES6, introduces a template literal syntax for strings:
+
+- `\`` (backticks) surround the entire string template
+- line breaks are permitted
+- `${...}` are placeholders for interpolating JS expressions
 
 ```js
 let name = "Inigo Montoya"
@@ -260,7 +299,6 @@ let killee = "father"
 let prepareTo = "die"
 
 console.log(`Hello. My name is ${name}. You killed my ${killee}. Prepare to ${prepareTo}`)
-
 ```
 
 #### You do: Template Exercise (10 / 120)
@@ -282,7 +320,7 @@ foods.forEach(function(food){
 })
 ```
 
-If there is more than one argument to the anonymous function, wrap
+If there is more or fewer than one argument to the anonymous function, wrap
 them in parens:
 
 ```js
@@ -290,7 +328,7 @@ let foods = ["pizza","mac n cheese","lasagna"]
 foods.forEach( (food,i) => console.log(`My #${i} favorite food is ${food}`) )
 ```
 
-Arrow functions also have the benefit of not changing the value of `this`:
+Arrow functions also have the benefit of keeping the context (`this`) of where it is defined:
 
 ```js
 var pizza = {
@@ -323,7 +361,8 @@ Additionally, the `return` statement is not needed with single line arrow functi
 
 ```js
 let add = (x, y) => x + y
-add(2, 3) //5
+add(2, 3) 
+//=> 5
 ```
 
 ```js
@@ -362,8 +401,8 @@ let add = (x,y) => (
 Support for ES6 is great! - https://kangax.github.io/compat-table/es6/
 
 If you need to support a legacy browser, check out the following tools:
-- [Traceur](https://github.com/google/traceur-compiler/wiki/Getting-Started)
 - [Babel](https://babeljs.io/)
+- [Traceur](https://github.com/google/traceur-compiler/wiki/Getting-Started)
 
 ## Bonus
 
