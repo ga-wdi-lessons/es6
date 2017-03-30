@@ -71,11 +71,13 @@ This makes our code easier to reason about.
 
 #### `let`
 
-The fact that other blocks (`if`, `for`, `while`, etc) *do not* create scopes is one of the oddities for which JS does and should get knocked.
+The fact that blocks of other special forms (`if`, `for`, `while`, etc) *do not* create scopes is one of the oddities for which JS does and should get knocked.
 
 ES6 introduces the `let` keyword which works just like `var` but is scoped to its block (`{...}`) rather than its function.
 
-> Objects use curly braces `{}` but are not code blocks!
+> We write object literals with curly braces but these are not code blocks.
+> Object literals should always follow an assignment or be provided as an argument to a function but never stand on their own.
+> Code blocks should be used as parts of special forms like for function bodies or the bodies of the flow control forms listed above.
 
 Below are contrived examples of isolating a variable `a` to a local scope.
 Pre-es6 we need to use a verbose IIFE (immediately invoked function expression) to create an isolate scope.
@@ -142,36 +144,39 @@ var a = 2;
 
 ### Default parameters (5 / 40)
 
-If a function defined to take 3 parameters is called with two arguments, what is the value of the third parameter in the function body?
-
-For example:
+Here we've defined a function with 3 parameters and then invoke the function with two arguments:
 
 ```js
 function printAndSum(a, b, c){
-console.log(a)
-console.log(b)
-console.log(c)
-
-return a + b + c
+  console.log(a)
+  console.log(b)
+  console.log(c)
+  return a + b + c
 }
 
 printAndSum(1, 2)
-
-// => ???
+//= 1
+//= 2
+//= undefined
+//=> NaN
 ```
 
 With ES6, we now have the option to set a default value for any of our functions' parameters.
 
 ```js
-function hello( name = "stranger"){
-  console.log("Hello, " + name)
+function printAndSum(a = 0, b = 0, c = 0){
+  console.log(a)
+  console.log(b)
+  console.log(c)
+  return a + b + c
 }
 
-hello() // Hello, stranger
-hello('Juan') // Hello, Juan
+printAndSum(1, 2)
+//= 1
+//= 2
+//= 0
+//=> 3
 ```
-
-How can we make our `printAndSum` example more durable?
 
 #### You do: Default Parameters Practice (10 / 50)
 
@@ -269,7 +274,7 @@ let y = 2
 let obj = {x,y}
 ```
 
-NOTE: this is not `let` giving us this ability. `vars` and `conts` can be used to set object properties the same way in es6
+NOTE: this is not `let` giving us this ability. `vars` and `const` can be used to set object properties the same way in es6
 
 #### You do: Concise methods and properties practice (10 / 105)
 
@@ -310,25 +315,39 @@ console.log(`Hello. My name is ${name}. You killed my ${killee}. Prepare to ${pr
 Arrow functions are a new shorthand syntax for defining anonymous functions:
 
 ```js
+// es5
 let foods = ["pizza","mac n cheese","lasagna"]
-foods.forEach( food => console.log(`I love ${food}`) )
-
-// vs the old
-
-foods.forEach(function(food){
-  console.log("I love " + food)
+foods.forEach(function(food, i){
+  console.log("My #" + i + "favorite food is " + food)
 })
-```
 
-If there is more or fewer than one argument to the anonymous function, wrap
-them in parens:
+//es6 arrow function
+let foods = ["pizza","mac n cheese","lasagna"]
+foods.forEach( (food,i) => console.log(`My #${i} favorite food is ${food}`) )
+```
+If we have only one argument to the function, we don't need to surround it in parens
 
 ```js
+foods.forEach( food => console.log(`I love ${food}`) )
+```
+
+But we do for functions that take more than one or no arguments
+
+```js
+// no arguments
+
+let makeNoise = () => console.log("Bang!")
+makeNoise()
+//= Bang!
+
+// multiple arguments
+
+let greetAt = (greetee, timeOfDay) => console.log(`Hello ${greetee}! Good ${timeOfDay}`)
 let foods = ["pizza","mac n cheese","lasagna"]
 foods.forEach( (food,i) => console.log(`My #${i} favorite food is ${food}`) )
 ```
 
-Arrow functions also have the benefit of keeping the context (`this`) of where it is defined:
+Arrow functions also have the benefit of maintaining the context (`this`) of where the function is defined:
 
 ```js
 var pizza = {
@@ -377,7 +396,7 @@ If the function is multi-line, you need to explicitly return:
 
 ```js
 let add = (x,y) => {
-  return x + y
+  x + y
 }
 add(2,3)
 //undefined in console
