@@ -80,7 +80,7 @@ ES6 introduces the `let` keyword which works just like `var` but is scoped to it
 > Code blocks should be used as parts of special forms like for function bodies or the bodies of the flow control forms listed above.
 
 Below are contrived examples of isolating a variable `a` to a local scope.
-Pre-es6 we need to use a verbose IIFE (immediately invoked function expression) to create an isolate scope.
+Prior to ES6, we needed to use something called an IIFE (immediately invoked function expression) to place the `a` (which is a `var`) an isolated scope. This is because `var`s are ***function-scoped***. In contrast `let` statements are ***block scoped***, meaning they don't exist or are not accessible outside of curly braces `{}`.
 
 ```js
 // es5
@@ -121,6 +121,30 @@ for(let j = 0; j < 10; j++){
 console.log("outside loop:", j)
 //throws an error
 ```
+
+The function-scoped of `var` and block-scoped behavior of `let` can have some initially puzzling but important and interesting differences in certain situations. We will delay the `console.log(i)` operation, or evaluating `i`, with `setTimeout` to highlight an important distinction in how **scope** with `let` and `var` operates differently.
+
+In the following scenario, since `var` is ***not block-scoped***, it "leaks" outside of the for-loop. This is not the case with `let` which is **block-scoped**.
+
+```js
+//es5
+for (var i = 0; i < 10; i++){
+  setTimeout(function(){
+    console.log(i)
+  }, 200)
+}
+
+// versus
+
+//es6
+for (let j = 0; j < 10; j++){
+  setTimeout(function(){
+    console.log(j)
+  }, 200)
+}
+```
+
+
 #### `const`
 
 ES6 introduces another keyword for declaring variables: `const`
@@ -190,17 +214,17 @@ Destructuring assignment makes it possible to extract data from collections (arr
 ```js
 // destructuring arrays
 let [a,b] = [1,2]
-a 
+a
 //=> 1
-b 
+b
 //=> 2
 let nums = [1,2,3,4,5]
 let [first, second, third] = nums
-first 
+first
 //=> 1
-second 
+second
 //=> 2
-third 
+third
 //=> 3
 ```
 
@@ -380,7 +404,7 @@ Additionally, the `return` statement is not needed with single line arrow functi
 
 ```js
 let add = (x, y) => x + y
-add(2, 3) 
+add(2, 3)
 //=> 5
 ```
 
