@@ -42,8 +42,6 @@ Today is all about exploring some of the [new features](https://github.com/lukeh
 
 ### Block Scope (10 minutes / 0:15)
 
-<!-- AM: Include ES5 example so students can point out how scope normally works -->
-
 <details>
   <summary><strong>What does the concept of scope refer to in Javascript?</strong></summary>
 
@@ -62,9 +60,27 @@ Today is all about exploring some of the [new features](https://github.com/lukeh
 
 </details>
 
+Let's revisit a code snippet from your "Scope & Context" lesson...
+
+```js
+teamName = "Giraffes" // What scope is this?
+var teamCity = "Sioux Falls" // What scope is this?
+
+function playBaseball() {
+  console.log("From " + teamCity + "...") // Does this work?
+  console.log("Welcome the " + teamName + "!") // Does this work?
+
+  pitcherName    = "Jesse Shawl" // What scope is this?
+  var batterName = "Breece Horper" // What scope is this?
+
+  console.log(batterName)  // Does this work?
+  console.log(pitcherName) // Does this work?
+}
+```
+
 #### `let`
 
-The fact that blocks of other special forms (`if`, `for`, `while`, etc) *do not* create scopes is one of the oddities for which Javascript gets knocked. <!-- AM: What are some examples of Javascript getting knocked? Are there other languages that do this? -->
+The fact that blocks of other special forms (`if`, `for`, `while`, etc) *do not* create scopes is one of the oddities for which Javascript gets knocked. Other languages -- like Python, C++ and Java -- have had this feature for a long time.
 
 ES6 introduces the `let` keyword which works just like `var` but is scoped to its block (`{...}`) rather than its function.
 
@@ -99,27 +115,32 @@ var a = 1;
 console.log(a);
 ```
 
-You're more likely to see `let` declarations inside an `if` or `for` block:
+You're more likely to see `let` declarations inside an `if` or `for` block...
 
-<!-- AM: Should this example be changed so it doesn't hint to the answer to the exercise? -->
-<!-- AM: Instead could demo conditional, and maybe using the content of a loop as a block -->
 ```js
 // ES5
-for(var i = 0; i < 10; i++) {
-  console.log(i)
+var age = 22
+if(age >= 21){
+  var canDrink = true
+} else {
+  var canDrink = false
 }
 
-console.log("outside loop:", i)
+console.log(canDrink)
+// => true
 ```
 
 ```js
 // ES6
-for(let j = 0; j < 10; j++) {
-  console.log(j)
+var age = 22
+if(age >= 21){
+  let canDrink = true
+} else {
+  let canDrink = false
 }
 
-console.log("outside loop:", j)
-// => Uncaught ReferenceError: j is not defined
+console.log(canDrink)
+// => Uncaught ReferenceError: canDrink is not defined
 ```
 
 <details>
@@ -544,9 +565,16 @@ An arrow function's context is defined by its enclosing context (i.e., where it 
 
 > 10 minutes exercise. 5 minutes review.
 
-### You Do: Refactor TimerJS (Remaining Time)
+### You Do: [Refactor TimerJS](https://github.com/ga-wdi-exercises/timerjs-es6-refactor) (Remaining Time)
 
-<!-- AM: Have code but need to create repo for this. -->
+#### More Practice
+
+Update any of the the following exercises to include ES6 features...
+
+- [ATM](https://github.com/ga-wdi-exercises/atm)
+- [Choose Your Own Adventure](https://github.com/ga-wdi-exercises/choose_your_own_adventure_js)
+
+> Rather than build a solution from scratch, you can either use your previous work on the exercise or begin from the code in each repo's solution(s) branch.
 
 ----------
 
@@ -636,11 +664,3 @@ There are plenty more ES6 features that we have not covered...
 - [Block Scope](https://www.sitepoint.com/joys-block-scoping-es6/)
 - [Destructuring](http://www.2ality.com/2015/01/es6-destructuring.html)
 - [Template Literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_template_literals)
-
-## Additional Practice
-
-Update the following exercises to include ES6 features.
-
-- [ATM](https://github.com/ga-wdi-exercises/atm)
-- [Cash Register](https://github.com/ga-wdi-exercises/cash-register)
-- [Choose Your Own Adventure](https://github.com/ga-wdi-exercises/choose_your_own_adventure_js)
