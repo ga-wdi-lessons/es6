@@ -9,7 +9,7 @@ The prompts will indicate which lines of code you cannot modify and/or touch. Yo
 Update this code snippet so that it uses arrow functions wherever possible.
 
 ```js
-function createUser(name, password, permissions)
+function createUser(name, password, permissions){
   return {
     name: name || null,
     password: password || "ilovepuppies999",
@@ -23,7 +23,7 @@ function createUser(name, password, permissions)
     autoPost(){
       setInterval(function(){
         console.log(`${this.name}'s Status: learning ES6 right now and it is rad.`)
-      }, 1000).bind(this)
+      }.bind(this), 1000)
     }
   }
 }

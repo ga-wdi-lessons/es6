@@ -17,7 +17,7 @@ Today, we are going to be looking at a new way to write Javascript by playing wi
 
 The Javascript standard is officially referred to as [ECMAScript](https://en.wikipedia.org/wiki/ECMAScript).
 
-As Javascript is so widely used that any changes would affect the whole web, there is a body known as Ecma International, which formally approves official versions for release. Each version contains features and changes to be added to the language.
+As Javascript is so widely used that any changes would affect the whole web, there is a body known as ECMA, which formally approves official versions for release. Each version contains features and changes to be added to the language.
 
 In short, ECMAScript is the language, and JavaScript an implementation of that language.
 
@@ -59,6 +59,8 @@ Today is all about exploring some of the [new features](https://github.com/lukeh
   > Scope allows us to use generic variable names using `var` while considering them in an isolated space. This makes our code easier to reason about.
 
 </details>
+
+<br>
 
 Let's revisit a code snippet from your "Scope & Context" lesson...
 
@@ -225,6 +227,8 @@ printAndSum(1, 2)
   > Because we are not passing in an argument for `c`, it is being automatically set to `undefined`. When you add `undefined` to two numbers, you get `NaN`. Hence, the return value in the above code snippet.
 
 </details>
+
+<br>
 
 Let's imagine that we don't have a third argument `c` but we still want to add together the two numbers (`a` and `b`) that we do have. How could we make `printAndSum` return an actual number instead of `undefined`.
 
@@ -532,7 +536,7 @@ Arrow functions also have the benefit of maintaining the context (`this`) of whe
 Context works differently in arrow functions than it does in ES5. Consider the below example.
 
 <details>
-  <summary><strong>What is the result of running `this.temperature++`? Why?</strong></summary>
+  <summary><strong>What is the result of running <code>this.temperature++</code>? Why?</strong></summary>
 
   > `setInterval`'s callback is what we call an "unbound" function (i.e., it is stand-alone and not contained in an object). That means that it will default to a global context, which in the browser is the `window` object.
   >
@@ -541,6 +545,8 @@ Context works differently in arrow functions than it does in ES5. Consider the b
   > If we `console.log(window.temperature)`, we see that it is `NaN`. This is the result of incrementing an `undefined` value by 1.
 
 </details>
+
+<br>
 
 ```js
 var pizza = {
@@ -562,13 +568,15 @@ It would be nice, however, if we could use `this` in a similar way and have it w
 Let's try the same thing, except this time we will replace `setInterval`'s callback function with an arrow function.
 
 <details>
-  <summary><strong>What is the result of running `this.temperature++`? What might this tell us about context when using arrow functions?</strong></summary>
+  <summary><strong>What is the result of running <code>this.temperature++</code>? What might this tell us about context when using arrow functions?</strong></summary>
 
   > It incremented the `temperature` value stored in pizza!
   >
   > Perhaps unbound arrow functions do not default to the global scope...
 
 </details>
+
+<br>
 
 ```js
 var pizza = {
