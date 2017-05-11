@@ -9,7 +9,7 @@
 - Use deconstruction to extract values from objects and arrays
 - Use default parameters and arrow functions
 
-## Framing (10 minutes / 0:10)
+## Framing (5 minutes / 0:05)
 
 Today, we are going to be looking at a new way to write Javascript by playing with some of the new features released with ES6.
 
@@ -19,11 +19,7 @@ The Javascript standard is officially referred to as [ECMAScript](https://en.wik
 
 As Javascript is so widely used that any changes would affect the whole web, there is a body known as Ecma International, which formally approves official versions for release. Each version contains features and changes to be added to the language.
 
-In short, ECMAScript is the language, and JavaScript an implementation of that language. <!-- AM: Is this worth getting into? -->
-
-### Evolution of Javascript
-
-> Check out [this awesome visualization](http://shaunlebron.github.io/solar-system-of-js/#0) of the current state of the Javascript universe
+In short, ECMAScript is the language, and JavaScript an implementation of that language.
 
 #### Timeline
 
@@ -31,13 +27,12 @@ In short, ECMAScript is the language, and JavaScript an implementation of that l
 - **2009: ES5 released.** This is what we have been writing so far in class.
 - **2015: ES6 published.** This brought about a wide set of new features and syntax.
 
-> ES4 was never released, largely due to political reasons
+> Check out [this awesome visualization](http://shaunlebron.github.io/solar-system-of-js/#0) of the current state of the Javascript universe
 
 #### Why now?
 
 Many plugins, frameworks and modules still use ES5, as browser support for
-the new version of the language is [still not universal](http://caniuse.com/#search=es6), but the new syntax and features
-of ES6 are increasingly becoming more and more popular in the developer world at large. You are very likely to see it pop up in the documentation of some of the technologies we will be using in this course.
+the new version of the language is [still not universal](http://caniuse.com/#search=es6), but the new syntax and features of ES6 are increasingly becoming more and more popular in the developer world at large. You are very likely to see it pop up in the documentation of some of the technologies we will be using in this course.
 
 Today is all about exploring some of the [new features](https://github.com/lukehoban/es6features) and getting comfortable with the new syntax.
 
@@ -45,7 +40,7 @@ Today is all about exploring some of the [new features](https://github.com/lukeh
 
 ## New Features
 
-### Block Scope (10 minutes / 0:20)
+### Block Scope (10 minutes / 0:15)
 
 <details>
   <summary><strong>What does the concept of scope refer to in Javascript?</strong></summary>
@@ -67,7 +62,7 @@ Today is all about exploring some of the [new features](https://github.com/lukeh
 
 #### `let`
 
-The fact that blocks of other special forms (`if`, `for`, `while`, etc) *do not* create scopes is one of the oddities for which Javascript gets knocked. <!-- AM: What are some examples of Javascript getting knocked? -->
+The fact that blocks of other special forms (`if`, `for`, `while`, etc) *do not* create scopes is one of the oddities for which Javascript gets knocked. <!-- AM: What are some examples of Javascript getting knocked? Are there other languages that do this? -->
 
 ES6 introduces the `let` keyword which works just like `var` but is scoped to its block (`{...}`) rather than its function.
 
@@ -79,11 +74,7 @@ Some examples of block scope are...
 
 > Object literals **are not** code blocks. Object literals should always follow an assignment or be provided as an argument to a function but never stand on their own.
 
-Below are contrived examples of isolating a variable `x` to a local scope.
-
-Prior to ES6, we needed to use something called an IIFE ("immediately invoked function expression") to place the `x` (which is a `var`) in an isolated scope. This is because `var`s are ***function-scoped***. In contrast `let` statements are ***block scoped***, meaning they don't exist or are not accessible outside of curly braces `{}`.  <!-- AM: Did we have to use an IIFE? Why not a named function? Don't want to make earliest examples too contrived/complicated... -->
-
-<!-- AM: Maybe add an exercise similar to the scope lesson in which they have to identify the values of variables at certain points in the code... -->
+Prior to ES6, a popular technique for isolating a variable was to place it inside of an IIFE ("immediately invoked function expression"). This is because `var`s are ***function-scoped***. In contrast `let` statements are ***block scoped***, meaning they don't exist or are not accessible outside of curly braces `{}`.
 
 ```js
 // ES5
@@ -127,28 +118,32 @@ console.log("outside loop:", j)
 // => Uncaught ReferenceError: j is not defined
 ```
 
-The function-scoped behavior of `var` and block-scoped behavior of `let` can have some puzzling but important differences in certain situations. We will delay the `console.log(i)` operation, or evaluating `i`, with `setTimeout` to highlight an important distinction in how **scope** with `let` and `var` operates differently.
+<details>
+  <summary><strong>After the block scope exercises, open this for notes on how <code>let</code> can be useful when writing <code>for</code> loops...</strong></summary>
 
-In the following scenario, since `var` is ***not block-scoped***, it "leaks" outside of the for-loop. This is not the case with `let`, which is **block-scoped**.
+  The function-scoped behavior of `var` and block-scoped behavior of `let` can have some puzzling but important differences in certain situations. We will delay the `console.log(i)` operation, or evaluating `i`, with `setTimeout` to highlight an important distinction in how **scope** with `let` and `var` operates differently.
 
-```js
-// ES5
-for (var i = 0; i < 10; i++) {
-  setTimeout(function(){
-    console.log(i)
-  }, 200)
-}
-```
+  In the following scenario, since `var` is ***not block-scoped***, it "leaks" outside of the for-loop. This is not the case with `let`, which is **block-scoped**.
 
-```js
-// ES6
-for (let j = 0; j < 10; j++) {
-  setTimeout(function(){
-    console.log(j)
-  }, 200)
-}
-```
+  ```js
+  // ES5
+  for (var i = 0; i < 10; i++) {
+    setTimeout(function(){
+      console.log(i)
+    }, 200)
+  }
+  ```
 
+  ```js
+  // ES6
+  for (let j = 0; j < 10; j++) {
+    setTimeout(function(){
+      console.log(j)
+    }, 200)
+  }
+  ```
+
+</details>
 
 #### `const`
 
@@ -166,12 +161,19 @@ var a = 2;
 // => Uncaught SyntaxError: Identifier 'a' has already been declared
 ```
 
-### You Do: Block Scope Exercises (10 minutes / 0:30)
+### You Do: [Block Scope Exercises](block-scope.exercise.md) (15 minutes / 0:30)
 
-1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/01-var-let-const.js
-2. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/02-const-complex.js
+> 10 minutes exercise. 5 minutes review.
 
-### Default parameters (5 minutes / 0:35)
+All of the exercises in this lesson exist on the lesson repo. Clone it down so that you can track your answers locally...
+
+```bash
+$ git clone git@github.com:ga-wdi-lessons/es6.git
+$ cd es6
+$ atom .
+```
+
+### Default Parameters (5 minutes / 0:35)
 
 Here we've defined a function with three parameters. We then invoke the function with two arguments...
 
@@ -190,10 +192,19 @@ printAndSum(1, 2)
 // => NaN
 ```
 
+<details>
+  <summary><strong>Why does <code>printAndSum(1, 2)</code> return <code>NaN</code>?</strong></summary>
+
+  > Because we are not passing in an argument for `c`, it is being automatically set to `undefined`. When you add `undefined` to two numbers, you get `NaN`. Hence, the return value in the above code snippet.
+
+</details>
+
+Let's imagine that we don't have a third argument `c` but we still want to add together the two numbers (`a` and `b`) that we do have. How could we make `printAndSum` return an actual number instead of `undefined`.
+
 With ES6, we now have the option to set a default value for any of our functions' parameters...
 
 ```js
-function printAndSum(a = 0, b = 0, c = 0) {
+function printAndSum(a=0, b=0, c=0) {
   console.log(a)
   console.log(b)
   console.log(c)
@@ -207,30 +218,49 @@ printAndSum(1, 2)
 // => 3
 ```
 
-> Is there a more pragmatic example we can use here?
-
-#### You Do: Default Parameters Practice (10 minutes / 0:45)
+#### You Do: [Default Parameters Practice](default-parameters-exercise.md) (10 minutes / 0:40)
 
 1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/04-default-parameters.js
 2. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/05-default-parameters.js
 
-### Destructuring (10 minutes / 0:55)
+### Destructuring (10 minutes / 0:50)
 
 Destructuring makes it possible to extract data from collections (i.e., arrays and objects) into distinct variables.
 
 #### Destructuring Arrays
 
-```js
-let [a,b] = [1,2]
+Let's say we want to pull some values out of an array and save them in variables. With what we know so far, we would do something like this...
 
-a
+```js
+// ES5
+
+const numbers = [1, 2, 3, 4]
+
+const first = numbers[0]
+const second = numbers[1]
+const third = numbers[2]
+const fourth = numbers[3]
+```
+
+With ES6, we can now destructure arrays and assign those variables like the below example. This can be very useful when you need to assign multiple variables at the same time.
+
+```js
+// ES6
+
+const [first, second, third, fourth] = [1, 2, 3, 4]
+
+one
 // => 1
 
-b
+two
 // => 2
+```
 
-let nums = [1,2,3,4,5]
-let [first, second, third] = nums
+We could also use this approach...
+
+```js
+const numbers = [1, 2, 3, 4]
+const [first, second, third] = numbers
 
 first
 // => 1
@@ -242,10 +272,14 @@ third
 // => 3
 ```
 
+> Array destructuring knows to begin assigning values from right to left. If we had also included a `fourth` variable inside of the array destructuring in the above example, it would have set it to 4.
+
 #### Destructuring Objects
 
+We can do something similar with objects when passing them as arguments into a function...
+
 ```js
-var user = {
+const user = {
    id: 1,
    name: "Bob",
    age: 43 ,
@@ -264,42 +298,50 @@ function greetUser ({ name, location })  {
 }
 ```
 
-<!-- AM: Add an example where we define multiple variables using objects keys on the same line. -->
+#### You Do: [Destructuring Practice](destructuring-exercise.md) (15 minutes / 1:05)
 
-#### You Do: Destructuring Practice (15 minutes / 1:10)
+## Break (10 minutes / 1:15)
 
-1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/06-deconstruction.js
+### Concise Object Literal Definitions (5 minutes / 1:20)
 
-## Break (10 minutes / 1:20)
-
-### Concise Object Literal Definitions (5 minutes / 1:25)
-
-<!-- AM: Overall framing for this section? What does "concise" mean here? -->
+ES6 introduced more "concise" ways for us to define methods and attributes in our objects. The two techniques described below are small ways in which we can make objects just a little more clean!
 
 #### Methods
 
-ES6 allows us to shorten method definitions from this...
+ES6 allows us to eliminate the need to use the `function` keyword in object method definitions. So this...
 
 ```js
 // ES5
 var car = {
+  make: "Volkswagen",
+  model: "Tiguan",
+  fuel: 0,
   drive: function(){
     console.log("vroom")
+  },
+  refuel: function(){
+    this.fuel = 100
   }
+
 }
 ```
 
-...to this...
+...can be written using concise method definitions like this...
 
 ```js
 // ES6
 let car = {
+  make: "Volkswagen",
+  model: "Tiguan",
+  fuel: 0,
   drive() {
     console.log("vroom")
+  },
+  refuel() {
+    this.fuel = 100
   }
 }
 ```
-<!-- AM: Include attributes in object -->
 
 #### Properties
 
@@ -323,24 +365,25 @@ let obj = { x, y }
 
 > This functionality is not particular to `let`. We could replace `let` with `const` or `var` in these examples.
 
-#### You Do: Concise Methods and Properties Practice (10 minutes / 1:35)
+#### You Do: [Concise Methods and Properties Practice](concise-object-methods-properties-exercise.md) (10 minutes / 1:30)
 
-1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/07-concise-properties-and-methods.js
+> 5 minutes exercise. 5 minutes review.
 
-### Template Literals (5 minutes / 1:40)
+### Template Literals (5 minutes / 1:35)
 
-Here's how we previously used variables to build custom strings...
+Oftentimes in Javascript we find ourselves building strings that incorporate dynamic values. For example, here's how we previously used variables to build custom strings...
 
 ```js
 var name = "Inigo Montoya"
 var killee = "father"
 var prepareTo = "die"
 
-console.log("Hello. My name is "+ name + ". You killed my " + killee +". Prepare to " + prepareTo)
+console.log("Hello. My name is "+ name + ". You killed my " + killee + ". Prepare to " + prepareTo)
 ```
 
-ES6 introduces a template literal syntax for strings...
+It can feel a little cumbersome to have to alternate between strings and variables. On top of that, we need to separate them using `+` signs.
 
+ES6 introduces a template literal syntax for strings that makes the process a bit more seamless. The syntax is a little different than the way we traditionally write strings...
 - Backticks surround the entire string template
 - Line breaks are permitted
 - `${...}` are placeholders for interpolating Javascript expressions
@@ -353,50 +396,47 @@ let prepareTo = "die"
 console.log(`Hello. My name is ${name}. You killed my ${killee}. Prepare to ${prepareTo}`)
 ```
 
-<!-- AM: Anything else to say in this section? -->
+> This does not mean that all strings need to be written this way! It only comes in handy when we need to reference dynamic values in a string.
 
-#### You Do: Template Exercise (10 minutes / 1:50)
+#### You Do: [Template Exercise](template-literals-exercise.md) (10 minutes / 1:45)
 
-1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/09-templates.js
+### Arrow Functions (10 minutes / 1:55)
 
-### Arrow Functions (15 minutes / 2:05)
-
-Arrow functions are a new shorthand syntax for defining anonymous functions...
-
-<!-- AM: Start with an example that compares single functions -- not inside of .forEach -->
-<!-- AM: Also earlier on talk about how this relates to function declarations / expressions. -->
-<!-- AM: They don't know `.forEach` yet. Either introduce officially now or replace examples. -->
+Arrow functions are a new shorthand syntax for defining anonymous functions. Let's revisit the way we currently write functions...
 
 ```js
-// ES5
-let foods = ["pizza", "mac n cheese", "lasagna"]
-
-foods.forEach(function(food, i){
-  console.log("My #" + i + "favorite food is " + food)
-})
-
-// ES6
-let foods = ["pizza", "mac n cheese", "lasagna"]
-
-foods.forEach((food, i) => {
-  console.log(`My #${i} favorite food is ${food}`)
-})
+function divide(dividend, divisor){
+  const quotient = dividend / divisor
+  return quotient
+}
 ```
 
-If we have only one argument to the function, we don't need to surround it in parens...
+With arrow functions, we forgo the `function` keyword entirely. We would write the above example like so...
 
 ```js
-foods.forEach(food => {
-  console.log(`I love ${food}`)
-})
+const divide = (dividend, divisor) => {
+  const quotient = dividend / divisor
+  return quotient
+}
 ```
 
-But we do for functions that take more than one or no arguments...
+> You might have noticed that the above example is written as a function expression -- not a declaration. We cannot define function declarations using arrow functions, which means that arrow functions cannot be hoisted.
+
+If the function only has one argument, that argument does not need to be surrounded by parens...
 
 ```js
-// No arguments
-let makeNoise = () => console.log("Bang!")
-makeNoise() // => Bang!
+const square = num => {
+  const product = num * num
+  return product
+}
+```
+
+But we do for functions that have no arguments...
+
+```js
+const doNothing = () => {
+  console.log("I am doing nothing!")
+}
 ```
 
 #### Return Statements
@@ -404,43 +444,38 @@ makeNoise() // => Bang!
 Here is a standard multi-line arrow function written using no shorthands. With a multi-line function, you (usually) need to explicitly return (i.e., use the `return` keyword).
 
 ```js
-var add = (num1, num2) => {
-  const sum = num1 + num2
-  return sum
+const divide = (dividend, divisor) => {
+  return dividend / divisor
 }
 ```
 
-If the function is single-line, you can omit both the return keyword and curly brackets...
+If the function is single-line, however, you can omit both the return keyword and curly brackets...
 
 ```js
-var add = (num1, num2) => num1 + num2
-
-add(2, 3)
-// => 5
+var divide = (dividend, divisor) => dividend / divisor
 ```
 
 If the function is multi-line, you need to explicitly return. Otherwise, you get this...
 
 ```js
-let add = (x,y) => {
-  x + y
+const divide = (dividend, divisor) => {
+  dividend / divisor
 }
 
-add(2,3)
+divide(2,3)
 // => undefined
 ```
 
 Though the single line return can be faked by wrapping the expression in parentheses...
 
 ```js
-let add = (x,y) => (
-  x + y
+const divide = (dividend, divisor) => (
+  dividend / divisor
 )
 ```
 
 #### Context in Arrow Functions
 
-<!-- AM: Is it always a benefit? What are some "weird" cases (i.e., event listeners)? -->
 Arrow functions also have the benefit of maintaining the context (`this`) of where the function is defined...
 
 Context works differently in arrow functions than it does in ES5. Consider the below example.
@@ -501,19 +536,25 @@ console.log(pizza.temperature)
 
 An arrow function's context is defined by its enclosing context (i.e., where it is defined). In this case, that enclosing context is the `pizza` object. An arrow function does not create its own context, unlike an unbound `function` which would have created its own context -- `window`.
 
-<!-- AM: Something about event listeners? Or have them encounter that in an exercise? -->
+> Arrow functions will be very useful when working with higher-order functions, which you will learn about in your upcoming "[Functional Programming" lesson](https://github.com/ga-wdi-lessons/functional-programming).
 
-#### You do: Arrow functions (15 minutes / 2:20)
+#### You Do: [Arrow Functions](arrow-functions-exercise.md) (15 minutes / 2:15)
 
-1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/11-arrow-functions.js
+> 10 minutes exercise. 5 minutes review.
+
+#### You Do: Refactor TimerJS (Remaining Time)
+
+<!-- AM: Have code but need to create repo for this. -->
+
+----------
 
 ## Legacy Browser Support
 
 Support for ES6 is great! Check out this [compatibility table](https://kangax.github.io/compat-table/es6/).
 
-If you need to support a legacy browser, check out the following tools...
-- [Babel](https://babeljs.io/)
-- [Traceur](https://github.com/google/traceur-compiler/wiki/Getting-Started)
+> If you need to support a legacy browser, check out the following tools...
+> - [Babel](https://babeljs.io/)
+> - [Traceur](https://github.com/google/traceur-compiler/wiki/Getting-Started)
 
 ## Bonus
 
@@ -603,5 +644,3 @@ Update the following exercises to include ES6 features.
 - [ATM](https://github.com/ga-wdi-exercises/atm)
 - [Cash Register](https://github.com/ga-wdi-exercises/cash-register)
 - [Choose Your Own Adventure](https://github.com/ga-wdi-exercises/choose_your_own_adventure_js)
-
-<!-- AM: Replace an original exercise(s) with one/some of these? -->
