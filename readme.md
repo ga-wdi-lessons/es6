@@ -80,7 +80,9 @@ function playBaseball() {
 
 #### `let`
 
-The fact that blocks of other special forms (`if`, `for`, `while`, etc) *do not* create scopes is one of the oddities for which Javascript gets knocked. Other languages -- like Python, C++ and Java -- have had this feature for a long time.
+The fact that blocks of other special forms (`if`, `for`, `while`, etc) *do not* create scopes is one of the oddities for which Javascript sometimes gets knocked. Other languages -- like Python, C++ and Java -- have had this feature for a long time.
+
+> [Here's a funny response](https://twitter.com/brendaneich/status/349768501583548416) from Javascript creator Brendan Eich on why the language did not come with block scope.
 
 ES6 introduces the `let` keyword which works just like `var` but is scoped to its block (`{...}`) rather than its function.
 
