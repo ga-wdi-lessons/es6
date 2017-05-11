@@ -44,4 +44,19 @@ myRide.location
 
 #### 3
 
-<!-- Create a question that has students invoke a function as a default argument -->
+Below is a function that allows a user to guess a number between 1 and 10. The function then compares that `guess` to a `magicNumber`.
+
+Update this function so that if the user does not provide a `guess`, the function will automatically generate a `guess` by selecting a random number between 1 and 10. You must do this using default parameters.
+
+```js
+function guessNumber(guess){
+  magicNumber = 7
+  if(guess === magicNumber){
+    console.log("You are correct!")
+  } else {
+    console.log("Your was was incorrect, sorry.")
+  }
+}
+```
+
+> Hint: looking into Javascript's [Math object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math) might help...
