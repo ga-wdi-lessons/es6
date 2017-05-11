@@ -8,21 +8,21 @@ Consider the following object...
 const pokemaster = {
   firstName: "Ash",
   lastName: "Ketchum",
-  gymsWon: ["Pewter City", "Cerulean City", "Vermilion City"]
+  gymsWon: ["Pewter City", "Cerulean City", "Vermilion City"],
   currentPokemon: {
     pikachu: {
       name: "Pikachu",
-      type: "Electric"
+      type: "Electric",
       weaknesses: ["Ground"]
     },
     squirtle: {
       name: "Squirtle",
-      type: "Water"
+      type: "Water",
       weaknesses: ["Electric", "Grass"]
     },
     charmander: {
       name: "Charmander",
-      type: "Fire"
+      type: "Fire",
       weaknesses: ["Ground", "Rock", "Water"]
     }
   }
