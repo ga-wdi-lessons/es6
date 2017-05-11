@@ -271,10 +271,10 @@ With ES6, we can now destructure arrays and assign those variables like the belo
 
 const [first, second, third, fourth] = [1, 2, 3, 4]
 
-one
+console.log(first)
 // => 1
 
-two
+console.log(second)
 // => 2
 ```
 
@@ -284,30 +284,53 @@ We could also use this approach...
 const numbers = [1, 2, 3, 4]
 const [first, second, third] = numbers
 
-first
+console.log(first)
 // => 1
 
-second
+console.log(second)
 // => 2
 
-third
+console.log(third)
 // => 3
 ```
 
-> Array destructuring knows to begin assigning values from right to left. If we had also included a `fourth` variable inside of the array destructuring in the above example, it would have set it to 4.
-
-<!-- AM: Add note that this could be useful when filtering through a huge array that comes from an API response, and we know we want a handful of values -->
+> Array destructuring knows to begin assigning values from left to right. If we had also included a `fourth` variable inside of the array destructuring in the above example, it would have set it to 4.
 
 #### Destructuring Objects
+
+We can do something similar with objects. Let's say we have the following object, which represents a user...
+
+```js
+const bob = {
+   id: 1,
+   name: "Bob",
+   age: 43 ,
+   profileUrl: "http://api.co/users/1",
+   location: "DC"
+}
+```
+
+If we want to quickly extract some values from that object -- let's say `name` and `age` -- we can do the following...
+
+```js
+const {name: bobsName, age: bobsAge} = bob
+
+console.log(bobsName)
+// => "Bob"
+
+console.log(bobsAge)
+// => 43
+```
+> There is an even cleaner syntax we can use by integrating another ES6 feature discussed later in this lesson
 
 We can do something similar with objects when passing them as arguments into a function...
 
 ```js
-const user = {
+const bob = {
    id: 1,
    name: "Bob",
    age: 43 ,
-   profileUrl:  "http://api.co/users/1",
+   profileUrl: "http://api.co/users/1",
    location: "DC"
 }
 
@@ -316,11 +339,16 @@ function greetUser (user) {
   console.log("Hello " + user.name + ", how's the weather in " + user.location)
 }
 
+greetUser(bob)
+
 // ES6
 function greetUser ({ name, location })  {
   console.log("Hello " + name + ", how's the weather in " + location)
 }
+
+greetUser(bob)
 ```
+> You can also do this with array destructuring
 
 ### You Do: [Destructuring Practice](destructuring-exercise.md) (15 minutes / 1:05)
 
@@ -385,8 +413,6 @@ let x = 1
 let y = 2
 let obj = { x, y }
 ```
-
-> This functionality is not particular to `let`. We could replace `let` with `const` or `var` in these examples.
 
 ### You Do: [Concise Methods and Properties Practice](concise-object-methods-properties-exercise.md) (10 minutes / 1:30)
 
