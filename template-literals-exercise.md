@@ -1,11 +1,5 @@
 # Template Literals Exercise
 
-Each of the below code snippets will come with a prompt. It is your job to update the code snippet so that prompt is satisfied. Your answer must leverage what you just learned about template literals.
-
-The prompts will indicate which lines of code you cannot modify and/or touch. You are not restricted, however, from adding code to the existing code snippets.
-
-#### 1
-
 Given the data in the code snippet below, use a template string to produce the
 following string...
 

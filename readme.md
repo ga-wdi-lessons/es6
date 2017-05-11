@@ -100,12 +100,12 @@ Prior to ES6, a popular technique for isolating a variable was to place it insid
 
 ```js
 // ES5
-var x = 1;
+var a = 1;
 (function(){
-  var x = 2
-  console.log(x);
+  var a = 2
+  console.log(a);
 })();
-console.log(x);
+console.log(a);
 ```
 
 
@@ -249,9 +249,11 @@ printAndSum(1, 2)
 // => 3
 ```
 
-### You Do: [Default Parameters Practice](default-parameters-exercise.md) (10 minutes / 0:40)
+### You Do: [Default Parameters Practice](default-parameters-exercise.md) (15 minutes / 0:45)
 
-### Destructuring (10 minutes / 0:50)
+> 10 minutes exercise. 5 minutes review.
+
+### Destructuring (10 minutes / 0:55)
 
 Destructuring makes it possible to extract data from collections (i.e., arrays and objects) into distinct variables.
 
@@ -356,7 +358,9 @@ greetUser(bob)
 ```
 > You can also do this with array destructuring
 
-### You Do: [Destructuring Practice](destructuring-exercise.md) (15 minutes / 1:05)
+### You Do: [Destructuring Practice](destructuring-exercise.md) (10 minutes / 1:05)
+
+> 5 minutes exercise. 5 minutes review.
 
 ## Break (10 minutes / 1:15)
 
@@ -407,17 +411,17 @@ ES6 lets us avoid this redundance.
 
 ```js
 // ES5
-var x = 1
-var y = 2
+var a = 1
+var b = 2
 let obj = {
-  x: x,
-  y: y
+  a: a,
+  b: b
 }
 
 // ES6
-let x = 1
-let y = 2
-let obj = { x, y }
+let a = 1
+let b = 2
+let obj = { a, b }
 ```
 
 ### You Do: [Concise Methods and Properties Practice](concise-object-methods-properties-exercise.md) (10 minutes / 1:30)
@@ -454,6 +458,8 @@ console.log(`Hello. My name is ${name}. You killed my ${killee}. Prepare to ${pr
 > This does not mean that all strings need to be written this way! It only comes in handy when we need to reference dynamic values in a string.
 
 ### You Do: [Template Exercise](template-literals-exercise.md) (10 minutes / 1:45)
+
+> 5 minutes exercise. 5 minutes review.
 
 ### Arrow Functions (10 minutes / 1:55)
 

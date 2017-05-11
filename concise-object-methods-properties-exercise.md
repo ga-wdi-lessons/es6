@@ -1,11 +1,5 @@
 # Concise Object Methods & Properties Exercise
 
-Each of the below code snippets will come with a prompt. It is your job to update the code snippet so that prompt is satisfied. Your answer must leverage what you just learned about concise object methods and properties.
-
-The prompts will indicate which lines of code you cannot modify and/or touch. You are not restricted, however, from adding code to the existing code snippets.
-
-#### 1
-
 Complete the `car` function below so that it returns an object resembling the return values indicates in the snippet below.
 
 > Hint: you'll need to use ES6 techniques learned earlier in this lesson to fully complete this exercise.
