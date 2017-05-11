@@ -220,9 +220,6 @@ printAndSum(1, 2)
 
 #### You Do: [Default Parameters Practice](default-parameters-exercise.md) (10 minutes / 0:40)
 
-1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/04-default-parameters.js
-2. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/05-default-parameters.js
-
 ### Destructuring (10 minutes / 0:50)
 
 Destructuring makes it possible to extract data from collections (i.e., arrays and objects) into distinct variables.
@@ -616,9 +613,7 @@ console.log(reversedDays(days))
 console.log(days)
 ```
 
-#### You Do: Spread Practice
-
-1. https://github.com/ga-wdi-exercises/es6-exercises/blob/master/03-spread-practice.js
+#### You Do: [Spread Practice](https://github.com/ga-wdi-exercises/es6-exercises/blob/master/03-spread-practice.js)
 
 ## Keep Going
 
