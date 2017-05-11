@@ -42,6 +42,8 @@ Today is all about exploring some of the [new features](https://github.com/lukeh
 
 ### Block Scope (10 minutes / 0:15)
 
+<!-- AM: Include ES5 example so students can point out how scope normally works -->
+
 <details>
   <summary><strong>What does the concept of scope refer to in Javascript?</strong></summary>
 
@@ -99,6 +101,8 @@ console.log(a);
 
 You're more likely to see `let` declarations inside an `if` or `for` block:
 
+<!-- AM: Should this example be changed so it doesn't hint to the answer to the exercise? -->
+<!-- AM: Instead could demo conditional, and maybe using the content of a loop as a block -->
 ```js
 // ES5
 for(var i = 0; i < 10; i++) {
@@ -161,7 +165,7 @@ var a = 2;
 // => Uncaught SyntaxError: Identifier 'a' has already been declared
 ```
 
-### You Do: [Block Scope Exercises](block-scope.exercise.md) (15 minutes / 0:30)
+### You Do: [Block Scope Exercises](block-scope-exercise.md) (15 minutes / 0:30)
 
 > 10 minutes exercise. 5 minutes review.
 
@@ -218,7 +222,7 @@ printAndSum(1, 2)
 // => 3
 ```
 
-#### You Do: [Default Parameters Practice](default-parameters-exercise.md) (10 minutes / 0:40)
+### You Do: [Default Parameters Practice](default-parameters-exercise.md) (10 minutes / 0:40)
 
 ### Destructuring (10 minutes / 0:50)
 
@@ -271,6 +275,8 @@ third
 
 > Array destructuring knows to begin assigning values from right to left. If we had also included a `fourth` variable inside of the array destructuring in the above example, it would have set it to 4.
 
+<!-- AM: Add note that this could be useful when filtering through a huge array that comes from an API response, and we know we want a handful of values -->
+
 #### Destructuring Objects
 
 We can do something similar with objects when passing them as arguments into a function...
@@ -280,7 +286,7 @@ const user = {
    id: 1,
    name: "Bob",
    age: 43 ,
-   profile_url:  "http://api.co/users/1",
+   profileUrl:  "http://api.co/users/1",
    location: "DC"
 }
 
@@ -295,7 +301,7 @@ function greetUser ({ name, location })  {
 }
 ```
 
-#### You Do: [Destructuring Practice](destructuring-exercise.md) (15 minutes / 1:05)
+### You Do: [Destructuring Practice](destructuring-exercise.md) (15 minutes / 1:05)
 
 ## Break (10 minutes / 1:15)
 
@@ -319,7 +325,6 @@ var car = {
   refuel: function(){
     this.fuel = 100
   }
-
 }
 ```
 
@@ -362,7 +367,7 @@ let obj = { x, y }
 
 > This functionality is not particular to `let`. We could replace `let` with `const` or `var` in these examples.
 
-#### You Do: [Concise Methods and Properties Practice](concise-object-methods-properties-exercise.md) (10 minutes / 1:30)
+### You Do: [Concise Methods and Properties Practice](concise-object-methods-properties-exercise.md) (10 minutes / 1:30)
 
 > 5 minutes exercise. 5 minutes review.
 
@@ -395,7 +400,7 @@ console.log(`Hello. My name is ${name}. You killed my ${killee}. Prepare to ${pr
 
 > This does not mean that all strings need to be written this way! It only comes in handy when we need to reference dynamic values in a string.
 
-#### You Do: [Template Exercise](template-literals-exercise.md) (10 minutes / 1:45)
+### You Do: [Template Exercise](template-literals-exercise.md) (10 minutes / 1:45)
 
 ### Arrow Functions (10 minutes / 1:55)
 
@@ -535,11 +540,11 @@ An arrow function's context is defined by its enclosing context (i.e., where it 
 
 > Arrow functions will be very useful when working with higher-order functions, which you will learn about in your upcoming "[Functional Programming" lesson](https://github.com/ga-wdi-lessons/functional-programming).
 
-#### You Do: [Arrow Functions](arrow-functions-exercise.md) (15 minutes / 2:15)
+### You Do: [Arrow Functions](arrow-functions-exercise.md) (15 minutes / 2:15)
 
 > 10 minutes exercise. 5 minutes review.
 
-#### You Do: Refactor TimerJS (Remaining Time)
+### You Do: Refactor TimerJS (Remaining Time)
 
 <!-- AM: Have code but need to create repo for this. -->
 
@@ -613,7 +618,7 @@ console.log(reversedDays(days))
 console.log(days)
 ```
 
-#### You Do: [Spread Practice](https://github.com/ga-wdi-exercises/es6-exercises/blob/master/03-spread-practice.js)
+### You Do: [Spread Practice](https://github.com/ga-wdi-exercises/es6-exercises/blob/master/03-spread-practice.js)
 
 ## Keep Going
 
